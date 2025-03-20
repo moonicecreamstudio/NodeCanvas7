@@ -13,9 +13,11 @@ namespace NodeCanvas.Tasks.Conditions {
 		public BBParameter<Transform> currentFruitTargetTransform;
 		public BBParameter<string> fruitType;
 
-		//Use for initialization. This is called only once in the lifetime of the task.
-		//Return null if init was successfull. Return an error string otherwise
-		protected override string OnInit()
+        public RobotScript robotScript;
+
+        //Use for initialization. This is called only once in the lifetime of the task.
+        //Return null if init was successfull. Return an error string otherwise
+        protected override string OnInit()
 		{
 			return null;
 		}
@@ -36,7 +38,7 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck()
 		{
-			if (fruitList.value.transform.childCount > 0)
+			if (fruitList.value.transform.childCount > 0 && robotScript.batteryCharge > 30f) // If more than 1 fruit has spawned, and the battery level is above 30
 			{
                 currentFruitTargetTransform.value = fruitList.value.transform.GetChild(0);
                 currentFruitTargetVector3.value = currentFruitTargetTransform.value.position;

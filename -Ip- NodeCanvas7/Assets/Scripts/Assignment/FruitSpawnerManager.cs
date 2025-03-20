@@ -68,6 +68,7 @@ public class FruitSpawnerManager : MonoBehaviour
         return Vector3.zero; // Return zero if no valid point is found
     }
 
+    // Visualize where the spawn radius will be
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.green; // Set the color of the gizmo
